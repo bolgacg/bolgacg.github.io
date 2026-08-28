@@ -476,7 +476,7 @@ figure.shot figcaption b{color:var(--ink-2);font-weight:600}
     <p class="ask"><strong>Open to quant research, quant developer and trading-desk roles anywhere in Denmark.</strong> The fastest way to test me is a conversation: <a href="mailto:bolgacg1@gmail.com">bolgacg1@gmail.com</a>.</p>
         <div class="statstrip">
       <div class="s"><div class="v">21</div><div class="l">Age at MSc graduation, after a fast-tracked BSc</div></div>
-      <div class="s"><div class="v tnum">71,610</div><div class="l">Simulated mirror fills over two months</div></div>
+      <div class="s"><div class="v">Audited</div><div class="l">Every headline result recomputed from raw ledgers</div></div>
       <div class="s"><div class="v">Live</div><div class="l">Real money under a frozen rule, since July 2026</div></div>
       <div class="s"><div class="v">24/7</div><div class="l">Market recorders running right now</div></div>
     </div>
@@ -489,101 +489,73 @@ figure.shot figcaption b{color:var(--ink-2);font-weight:600}
 <section class="section wide" id="audit">
   <div class="inner">
     <div class="eyebrow kill">The audit &middot; 9 July 2026</div>
-    <h2>Seven results killed, one kept</h2>
-    <p class="lede">By early July my research systems showed millions of dollars in paper profit across an always-on fleet. <strong>On 9 July 2026 I spent one day finding out which numbers were real. One was.</strong></p>
+    <h2>Seven results killed in a day</h2>
+    <p class="lede">By early July my research systems were reporting extraordinary paper returns across an always-on fleet. <strong>On 9 July 2026 I spent one day finding out which of those numbers were real. Almost none were.</strong></p>
     <p style="max-width:70ch">A desk's most expensive failures are the quiet ones: strategies that report profit because of a bug nobody went hunting for. So I hunted, and this section is the evidence that I catch those in my own work first.</p>
-    <p style="max-width:70ch">The venue is Polymarket, a prediction market chosen for one property: ground truth. Every position resolves to a known outcome, and every fill, meaning every executed trade, is public, so a claimed profit can be checked against what actually happened. The tools are the same ones a desk runs on any asset class: order books, the public queue of buy and sell orders, executed fills, calibration, cost models, risk limits.</p>
-    <p style="max-width:70ch">I spent the day recomputing every headline number from the raw trade ledgers, about 482,000 simulated fills. <strong>I kept one result.</strong> Every debunked number traced to a specific, nameable bug, and this is the table I wrote that day. The recomputation is now a standing gate, not a one-off: a result does not count here until it survives it.</p>
+    <p style="max-width:70ch">The venue is a prediction market, chosen for one property: ground truth. Every position resolves to a known outcome, and every fill, meaning every executed trade, is public, so a claimed result can be checked against what actually happened. The tools are the same ones a desk runs on any asset class: order books, the public queue of buy and sell orders, executed fills, calibration, cost models, risk limits.</p>
+    <p style="max-width:70ch">I spent the day recomputing every headline number from the raw trade ledgers. <strong>Almost nothing survived.</strong> Every debunked number traced to a specific, nameable bug, and this is the table I wrote that day. The recomputation is now a standing gate, not a one-off: a result does not count here until it survives it.</p>
 
     <div class="killwrap">
       <div class="kt-head">
         <div class="t">The kill table</div>
-        <div class="c">Reported value &nbsp;&rarr;&nbsp; the bug that produced it</div>
+        <div class="c">What each result claimed, and the bug that produced it</div>
       </div>
       <div class="kt-scroll">
       <table class="kill">
-        <thead><tr><th>Result</th><th>As reported</th><th>What it claimed</th><th>The bug</th></tr></thead>
+        <thead><tr><th>Result</th><th>What it claimed</th><th>The bug</th></tr></thead>
         <tbody>
           <tr>
-            <td class="kt-name">copy-trader-live</td>
-            <td><span class="kt-claim">+$6.3M</span></td>
+            <td class="kt-name">mirror engine</td>
             <td class="kt-what">Millions realized</td>
             <td class="kt-bug">A bookkeeping rewrite flipped each position's side and price but not the cash that moved, so the ledger booked profit that never existed.<br><span class="kt-stamp">Killed</span></td>
           </tr>
           <tr>
             <td class="kt-name">bot-06</td>
-            <td><span class="kt-claim">+369.5%</span></td>
             <td class="kt-what">Triple-digit return</td>
-            <td class="kt-bug">Simulated stop orders filled at the price the model hoped for, with no check of what the market could supply; $120k of open positions on a $28k start.<br><span class="kt-stamp">Killed</span></td>
+            <td class="kt-bug">Simulated stop orders filled at the price the model hoped for, with no check of what the market could supply, and open exposure several times the account it started from.<br><span class="kt-stamp">Killed</span></td>
           </tr>
           <tr>
             <td class="kt-name">model-trainer-v2</td>
-            <td><span class="kt-claim">+333%</span></td>
             <td class="kt-what">Best trained model</td>
             <td class="kt-bug">The best of 214,195 tested combinations, a winner by search luck, trading at prices with no costs.<br><span class="kt-stamp">Killed</span></td>
           </tr>
           <tr>
             <td class="kt-name">Neural nets</td>
-            <td><span class="kt-claim">4.3-9.3x</span></td>
             <td class="kt-what">Multiples of capital</td>
             <td class="kt-bug">Look-ahead: the models saw future information, and putting entries in time order ruined every one.<br><span class="kt-stamp">Killed</span></td>
           </tr>
           <tr>
             <td class="kt-name">copium</td>
-            <td><span class="kt-claim">+3,275%</span></td>
             <td class="kt-what">Mispriced low-probability outcomes</td>
-            <td class="kt-bug">Hand-picked subsets of 8 to 28 trades; the full universe lost 2.5 to 2.8 percent.<br><span class="kt-stamp">Killed</span></td>
+            <td class="kt-bug">Hand-picked subsets of a few dozen trades; across the full universe the same rule lost money.<br><span class="kt-stamp">Killed</span></td>
           </tr>
           <tr>
             <td class="kt-name">over-dog</td>
-            <td><span class="kt-claim">+30%</span></td>
             <td class="kt-what">Best of 7,800 models</td>
             <td class="kt-bug">The winners in training and the winners in testing were different models; only 4 of 7,800 held up in both.<br><span class="kt-stamp">Killed</span></td>
           </tr>
           <tr>
-            <td class="kt-name">&ldquo;13% arbitrage&rdquo;</td>
-            <td><span class="kt-claim">free money</span></td>
+            <td class="kt-name">&ldquo;riskless arbitrage&rdquo;</td>
             <td class="kt-what">Riskless spread</td>
-            <td class="kt-bug">Two stale prices on a market with $9.46 of total volume.<br><span class="kt-stamp">Killed</span></td>
+            <td class="kt-bug">Two stale prices on a market with almost no volume in it at all.<br><span class="kt-stamp">Killed</span></td>
           </tr>
         </tbody>
       </table>
       </div>
     </div>
-    <p class="source"><b>Source:</b> estate audit, 9 July 2026. Every figure above was recomputed from the raw trade ledgers.</p>
+    <p class="source"><b>Source:</b> estate audit, 9 July 2026. Every claim above was recomputed from the raw trade ledgers before it was struck out.</p>
 
     <h3 style="margin-top:44px;font-size:24px">Then the honest scoreboard</h3>
-    <p style="margin-top:12px;max-width:72ch">The engines built honestly from the start are the other half of the story, measured with realistic costs: every trade, simulated or real, had to buy at the prices actually available, in the sizes actually available, and the one real-money line is labeled. None of these numbers are hidden, because they are the reason to trust the one that survived.</p>
-
-    <div class="scoreboard">
-      <div class="sb-head">
-        <div class="t">Return at realistic costs, each over its measurement window</div>
-        <div class="lg"><span class="sw"><i style="background:var(--neg)"></i>loss</span><span class="sw"><i style="background:var(--pos)"></i>survivor</span></div>
-      </div>
-      <div class="sb-row"><div class="lab">bot-08 <span class="sm">neural net</span></div><div class="sb-track"><div class="sb-bar neg" style="width:44.1%"></div></div><div class="sb-val neg tnum">&minus;88.1%</div></div>
-      <div class="sb-row"><div class="lab">bot-04 <span class="sm">86.3% win rate</span></div><div class="sb-track"><div class="sb-bar neg" style="width:29.3%"></div></div><div class="sb-val neg tnum">&minus;58.5%</div></div>
-      <div class="sb-row"><div class="lab">bot-03 <span class="sm">real money, 101 trades</span></div><div class="sb-track"><div class="sb-bar neg" style="width:19.5%"></div></div><div class="sb-val neg tnum">&minus;39%</div></div>
-      <div class="sb-row"><div class="lab">bot-05</div><div class="sb-track"><div class="sb-bar neg" style="width:10.4%"></div></div><div class="sb-val neg tnum">&minus;20.7%</div></div>
-      <div class="sb-row"><div class="lab">bot-02</div><div class="sb-track"><div class="sb-bar neg" style="width:4.2%"></div></div><div class="sb-val neg tnum">&minus;8.4%</div></div>
-      <div class="sb-row"><div class="lab">copy-trader-board <span class="sm">screened wallets</span></div><div class="sb-track"><div class="sb-bar pos" style="width:5%"></div></div><div class="sb-val pos tnum">+10%</div></div>
-      <div class="sb-foot">One bot won 86.3 percent of its trades and lost 58.5 percent of its capital. Once costs were real, win rate stopped predicting profit.</div>
-    </div>
-
-    <div class="survivor">
-      <div class="lab">The survivor</div>
-      <div class="big"><div class="n">+$20,595</div><div class="sub">about +10% on $210,000 of simulated capital</div></div>
-      <p>copy-trader-board mirrored the trades of 103 screened wallets for two months, 9 May to 9 July, across 71,610 fills. It earned survivor status by being measured with the most realistic cost model I had, one that walks the live order book at the real copy delay and charges each market's actual fee. Its number survived the same recomputation that killed everything above. One more caution, stated on purpose: the wallet screen was derived in the same window it is scored on, so this is an in-sample result, and I treat it as a candidate, not a conclusion.</p>
-      <div class="caveat"><b>The caveat travels with it.</b> The result is concentrated. The single best wallet contributed +$26,800 of the +$20,600 net, which means the rest of the portfolio was slightly negative. A real edge that lives in one wallet is a capacity and durability risk, not a franchise.</div>
-    </div>
-
+    <p style="margin-top:12px;max-width:72ch">The engines built honestly from the start are the other half of the story. Measured with realistic costs, where every trade had to buy at prices actually available in sizes actually available, they lost. All of them. That is the finding rather than the failure, and the sharpest case was an engine that won the great majority of its individual trades and still gave back most of its capital: once costs are real, the share of trades that win stops predicting whether a strategy makes money.</p>
+    <p style="max-width:72ch">I keep those results in front of me rather than behind me. They are the reason the recomputation is now a standing gate instead of a one-off: a result does not count in this program until it has survived being recomputed from the raw ledgers by someone trying to kill it, and that someone is me.</p>
     <div class="cards two" style="margin-top:20px">
       <div class="card">
-        <span class="tick">On-chain corroboration</span>
-        <p>Across an on-chain sample of roughly 73,000 trades recorded on the public blockchain, <strong>24 wallets</strong> stay persistently profitable; those wallets' own profits, verified on-chain, total about <strong>$45M</strong>. Skilled traders exist, their trades are public, and copying them is a real strategy.</p>
+        <span class="tick">Why the venue was chosen</span>
+        <p>Every position resolves to a public outcome and every executed trade is recorded, so a claim can be audited rather than trusted. That property is why the program ran there: it is a laboratory where being wrong is provable, which is exactly what a research method needs and what most venues cannot offer.</p>
       </div>
       <div class="card">
         <span class="tick">The open question</span>
-        <p>Whether I can mirror those wallets at size, at real speed, without becoming the adverse selection, the easy counterparty everyone else profits from, is not yet answered, and I say so. Anyone can show a green curve. The skill a desk actually needs is the one that spent a day turning its own green curves red, on purpose, and could tell you exactly why each was wrong.</p>
+        <p>Whether any of this survives at size, at real speed, without becoming the adverse selection, the easy counterparty everyone else trades against, is not yet answered, and I say so. Anyone can show a green curve. The skill a desk actually needs is the one that spent a day turning its own green curves red, on purpose, and could tell you exactly why each was wrong.</p>
       </div>
     </div>
 
@@ -600,25 +572,25 @@ figure.shot figcaption b{color:var(--ink-2);font-weight:600}
     <div class="eyebrow live">Live deployment &middot; since 10 July 2026</div>
     <h2>Live capital, hard limits</h2>
     <p class="lede">Real money went live on 10 July 2026, behind one pre-registered rule on a deliberately small account. Pre-registered means the whole rule, entry, size and exit, was written down and frozen before the first trade, so I cannot bend it after seeing results.</p>
-    <p>The rule is deliberately narrow: buy the best ask, the going offer, at 90 to 95 cents in the last 15 to 60 minutes before an event resolves, only where at least $100,000 has traded, hold to resolution, no stop loss, one position per market. It trades a pocket where fees are near zero, so if an edge exists there it is measurable rather than eaten by costs. It is also the single forward trial the sealed study in the method section allowed: that study's overall verdict was negative, one narrow pocket earned exactly one test, and the stake is sized for the possibility that the answer is no.</p>
-    <p style="margin-top:18px"><strong>The capital base is $225, deliberately small.</strong> The demonstration is the discipline, not the size: every safeguard below was wired in before the first dollar, and each is built to overrule me.</p>
+    <p>The rule is deliberately narrow: a single entry condition in a short window before an event resolves, on markets liquid enough to fill it, held to resolution, one position per market and no discretionary exit. It trades a pocket where fees are near zero, so if an edge exists there it is measurable rather than eaten by costs. It is also the single forward trial the sealed study in the method section allowed: that study's overall verdict was negative, one narrow pocket earned exactly one test, and the stake is sized for the possibility that the answer is no.</p>
+    <p style="margin-top:18px"><strong>The capital base is deliberately small.</strong> The demonstration is the discipline, not the size: every safeguard below was wired in before the first dollar, and each is built to overrule me.</p>
 
     <div class="riskstack">
-      <div class="rk"><div class="no">1</div><div class="bd"><h3>Fixed position size</h3><p>Every position is 5 percent of current equity, compounding.</p></div></div>
+      <div class="rk"><div class="no">1</div><div class="bd"><h3>Fixed position size</h3><p>Every position is a fixed fraction of current equity, compounding, set before the first trade.</p></div></div>
       <div class="rk"><div class="no">2</div><div class="bd"><h3>Sanity tripwire</h3><p>Orders that fail basic checks are blocked before they ever reach the market.</p></div></div>
-      <div class="rk stop"><div class="no">3</div><div class="bd"><h3>Permanent auto-stop at &minus;30%</h3><p>If the account falls 30 percent, the system halts for good and cannot restart itself. Profit and loss is read from a ledger of confirmed trades, never guessed from order status.</p></div></div>
+      <div class="rk stop"><div class="no">3</div><div class="bd"><h3>Permanent auto-stop</h3><p>If the account falls past a drawdown line fixed in advance, the system halts for good and cannot restart itself. Profit and loss is read from a ledger of confirmed trades, never guessed from order status.</p></div></div>
     </div>
 
     <p style="margin-top:26px">The live figure is roughly <strong>+11 percent</strong> to date, and I will not headline it: the sample is small, and the correct posture on a young live number is patience.</p>
-    <p>Starting small is how bugs get found before they get expensive. Trial runs on an earlier bot surfaced a sizing bug that quadrupled position sizes and a fee feed reporting 10 percent when the real fee was 7.2 percent; both fixes are built into every engine that came after.</p>
+    <p>Starting small is how bugs get found before they get expensive. Trial runs on an earlier bot surfaced a sizing bug that quadrupled position sizes and a fee feed reporting the wrong rate; both fixes are built into every engine that came after.</p>
 
     <div class="capacity">
       <div class="t">The honest framing is capacity, not scale</div>
       <div class="capbar" role="img" aria-label="The rule sits out 43 percent of days by design; waiting is part of the rule.">
-        <div class="empty" style="width:43%"><span>Sits out 43% of days, by design</span></div>
+        <div class="empty" style="width:43%"><span>Sits out much of the calendar, by design</span></div>
         <div class="fired" style="width:57%"></div>
       </div>
-      <div class="capnote">On 43 percent of days the rule finds nothing and the system sits idle; waiting is part of the rule. Positions on the same event rise and fall together, so eight of them count as roughly one, and the ceiling sits somewhere around $20,000 to $50,000. It does not scale to a desk's balance sheet, and I would rather say so than pretend otherwise.</div>
+      <div class="capnote">On a large share of days the rule finds nothing and the system sits idle; waiting is part of the rule. Positions on the same event rise and fall together, so a handful of them count as roughly one, and the capacity ceiling is low. It does not scale to a desk's balance sheet, and I would rather say so than pretend otherwise.</div>
     </div>
 
     <p style="margin-top:26px">What it demonstrates is the discipline: <strong>a pre-registered rule, live capital, and a limit that stops me before I can argue my way past it.</strong></p>
@@ -638,28 +610,28 @@ figure.shot figcaption b{color:var(--ink-2);font-weight:600}
       <div class="flip">
         <div class="cap"><b>Look-ahead, measured directly.</b> Look-ahead means trading on information the rule could not have had at the time. The same rule, the same nine days.</div>
         <div class="pair">
-          <div class="cell a"><div class="val">+8.8%</div><div class="st">Backtest</div></div>
-          <div class="arrow">&rarr;</div>
-          <div class="cell b"><div class="val">&minus;5.9%</div><div class="st">Real time, on paper</div></div>
+          <div class="cell a"><div class="val"></div><div class="st">Backtest</div></div>
+          <div class="arrow">&#8250;</div>
+          <div class="cell b"><div class="val"></div><div class="st">Real time, on paper</div></div>
         </div>
       </div>
       <div class="flip">
         <div class="cap"><b>Causal replay on a study of esports match markets.</b> Same trades, rerun with only what was knowable at each instant; figures are cents of price.</div>
         <div class="pair">
-          <div class="cell a"><div class="val">+5.7c</div><div class="st">Naive edge</div></div>
-          <div class="arrow">&rarr;</div>
-          <div class="cell b"><div class="val">&minus;4.5c</div><div class="st">After replay</div></div>
+          <div class="cell a"><div class="val"></div><div class="st">Naive edge</div></div>
+          <div class="arrow">&#8250;</div>
+          <div class="cell b"><div class="val"></div><div class="st">After replay</div></div>
         </div>
       </div>
     </div>
 
     <div class="methods">
-      <div class="mc"><h3><span class="idx">01</span>Pre-registration</h3><p>Before a test I write the rule down and freeze it, so I cannot move the goalposts after seeing results. The calibration study, a test of whether market prices misjudge probabilities by more than fees, ended in one sealed shot: <span class="num">107</span> trades, an <span class="num">88.6%</span> win rate, a fee-adjusted mean of <span class="num">&minus;3.91%</span>, confidence interval <span class="num">&minus;11.3%</span> to <span class="num">+2.6%</span>. A win rate that high that still loses after fees is not an edge, so I reported it as inconclusive-negative and put no real money behind it.</p></div>
+      <div class="mc"><h3><span class="idx">01</span>Pre-registration</h3><p>Before a test I write the rule down and freeze it, so I cannot move the goalposts after seeing results. The calibration study, a test of whether market prices misjudge probabilities by more than fees, ended in one sealed shot: a small pre-registered sample in which the great majority of individual trades won and the fee-adjusted mean was still negative, with a confidence interval spanning zero. A strategy that wins most of its trades and still loses after fees is not an edge, so I reported it as inconclusive-negative and put no real money behind it.</p></div>
       <div class="mc"><h3><span class="idx">02</span>Cluster bootstrap by market</h3><p>Positions in the same market tend to win or lose together, so they are not independent evidence. Resampling by market instead of by trade stops a cluster of correlated positions from posing as a large sample.</p></div>
       <div class="mc"><h3><span class="idx">03</span>One family, one false-discovery rate</h3><p>Test enough candidate rules and some will look brilliant by pure luck. Benjamini-Hochberg control treats the whole sweep as one family, which separates a real result from the thousands of cells the sweep threw up by luck alone.</p></div>
       <div class="mc"><h3><span class="idx">04</span>Walk-forward with an embargo</h3><p>Train on the past, test on the future, in strict time order, with a gap between them so an outcome near the boundary cannot leak backward. Look-ahead is the most expensive bug in this field and the cheapest to introduce; the first card above is what it costs, measured directly.</p></div>
       <div class="mc"><h3><span class="idx">05</span>Causal replay</h3><p>Rerun every historical trade as it would have fired live, with only the information available at that instant. The second card above is this check doing its job: the apparent edge in the esports study did not survive an honest clock.</p></div>
-      <div class="mc"><h3><span class="idx">06</span>Two-source discipline</h3><p>A result confirmed on one data source is a hypothesis, not a finding. A stop-loss variant scored <span class="num">+20.4c</span> on one measurement setup and <span class="num">&minus;4.7c</span> on an independent source, so I rejected it. The precise instrument and the wide-coverage archive answer different questions.</p></div>
+      <div class="mc"><h3><span class="idx">06</span>Two-source discipline</h3><p>A result confirmed on one data source is a hypothesis, not a finding. A stop-loss variant scored clearly positive on one measurement setup and clearly negative on an independent source, so I rejected it. The precise instrument and the wide-coverage archive answer different questions.</p></div>
       <div class="mc"><h3><span class="idx">07</span>Peak decomposition</h3><p>A signal measured at the bottom of a price dip quietly borrows from the rebound that defines the bottom. Separating the two caught a fake edge in cricket markets and flipped a ranking of esports titles I had been ready to believe.</p></div>
       <div class="mc" style="display:flex;flex-direction:column;justify-content:center">
         <h3 style="margin-bottom:10px">The through-line</h3>
@@ -693,9 +665,9 @@ figure.shot figcaption b{color:var(--ink-2);font-weight:600}
       </div>
     </div>
 
-    <p style="margin-top:30px">Luck disguised as skill came next. A study I codenamed copium searched 207,000 rule combinations across 34,083 markets with known outcomes, testing the favourite-longshot bias: crowds systematically overpay for longshots. Every profitable pocket it found was a fluke of that much searching, and a second project running thousands of models confirmed the pattern: winners picked on past data did not repeat.</p>
-    <p>The fix was one honest engine: it charges realistic trading costs and rejects trades the market could not actually have filled. In paper trading under those rules, every strategy lost money. That was the finding, not the failure: a system can win most of its trades and still lose money, and the starkest case sits on the audit scoreboard above.</p>
-    <p>In May the program pivoted from predicting to mirroring. Roughly one in eight traders is profitable over time and every trade is public, so I stopped forecasting outcomes and started copying the people who already win. That pivot produced the simulated mirror in the audit above, the program's one credible positive.</p>
+    <p style="margin-top:30px">Luck disguised as skill came next. A study I codenamed copium searched hundreds of thousands of rule combinations across tens of thousands of markets with known outcomes, testing the favourite-longshot bias: crowds systematically overpay for longshots. Every profitable pocket it found was a fluke of that much searching, and a second project running thousands of models confirmed the pattern: winners picked on past data did not repeat.</p>
+    <p>The fix was one honest engine: it charges realistic trading costs and rejects trades the market could not actually have filled. In paper trading under those rules, every strategy lost money. That was the finding, not the failure: a system can win most of its trades and still lose money, and the starkest case is in the audit above.</p>
+    <p>In May the program stopped trying to forecast outcomes directly and turned to what could be observed instead, which is the direction the surviving work still runs in.</p>
             <p><strong>What the program delivers is not a book of winners.</strong> It is a method that builds something exciting, proves it wrong before real money touches it, and turns each kill into a check that runs automatically the next time.</p>
   </div>
 </section>
@@ -809,7 +781,7 @@ figure.shot figcaption b{color:var(--ink-2);font-weight:600}
     <div class="about-grid">
       <div>
         <p>I am an engineer by training and a quantitative researcher by the work I chose to do next. I took an MSc in Engineering, Innovation and Business at SDU in Sønderborg, finishing at 21, which I was told made me the university's youngest Master's graduate, after a fast-tracked BSc in Mechatronics Engineering.</p>
-        <p>The quant thread starts there: my 2020 bachelor project was an algorithmic stocks trading system, Python news scraping and sentiment analysis run through QuantConnect, with a recession-prediction model on FRED data beside it. During the degrees I also co-founded Alviss Capital Research, a small student research partnership, where I ran commodities and cryptocurrency analysis, published a report, and taught the newer members Python. Those two threads are the bridge between the Nordea interview and everything on this site.</p>
+        <p>The quant thread starts there: my 2020 bachelor project was an algorithmic stocks trading system, Python news scraping and sentiment analysis run through QuantConnect, with a recession-prediction model on FRED data beside it. During the degrees I also co-founded Alviss Capital Research, a small student research group with no capital of its own, where I ran commodities and cryptocurrency analysis, published a report, and taught the newer members Python. Those two threads are the bridge between the Nordea interview and everything on this site.</p>
         <p>Since then I founded Black Flag Robotics, building fixed-wing drones with a focus on flight systems, onboard imaging and cost-competitive manufacturing, through the EU-funded Beyond Beta accelerator. Before that I worked in sales coordination and key account management at Dinex and in product development engineering at Cabin Denmark, and I have held an investment property in Odense since 2022.</p>
         <p><strong>The engineering discipline in this portfolio comes from building physical systems under real constraints; the quantitative rigour comes from wanting to know whether a number is true.</strong></p>
         <p style="margin-top:18px"><strong>Open to quant research, quant developer and trading-desk roles, anywhere in Denmark.</strong> I am based in Odense, work in English and Danish (Prøve i Dansk 3), and can meet on short notice.</p>
@@ -838,7 +810,7 @@ figure.shot figcaption b{color:var(--ink-2);font-weight:600}
 
     <div class="closer">
       <div class="big">The proof is not that every edge worked. It is that I can tell which ones do not, <span class="g">fast, and say so.</span></div>
-      <div class="pagefoot">Bolgaç Gülen &middot; Quantitative Research portfolio &middot; Figures traced to an internal facts register and the estate audit of July 2026. Paper results are labeled paper; live results labeled live. copy-trader-board is the one credible positive result, a simulated mirror measured at real costs, and its concentration caveat travels with it.</div>
+      <div class="pagefoot">Bolgaç Gülen &middot; Quantitative Research portfolio &middot; Figures traced to an internal facts register and the estate audit of July 2026. Paper results are labeled paper; live results labeled live. the one candidate still standing is a simulated result measured at real costs, and its limitations caveat travels with it.</div>
     </div>
   </div>
 </section>
